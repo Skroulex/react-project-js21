@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {Route, Routes, BrowserRouter} from "react-router-dom";
+import "./App.css"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+import ContactContextProvider from "./contexts/ContactsContext";
+
+import Add from "./components/Add/Add";
+import List from "./components/List/List";
+import Header from "./components/Header/Header";
+import Edit from "./components/Edit/Edit";
+
+const App = () => {
+    return (
+        <div>
+            <ContactContextProvider>
+                <BrowserRouter>
+                    <Header/>
+                    <img className="img" src="https://freesvg.org/img/1527145993.png" alt="phone" />
+                    <Routes>
+                        <Route path="/add" element={<Add/>}/>
+                        <Route path="/" element={<List/>}/>
+                        <Route path="/edit/:id" element={<Edit/>}/>
+
+                    </Routes>
+                </BrowserRouter>
+            </ContactContextProvider>
+        </div>
+    );
+};
 
 export default App;
